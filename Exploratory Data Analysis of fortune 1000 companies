@@ -1,0 +1,60 @@
+import pandas as pd
+import openpyxl
+# Load the Excel file (replace 'path_to_file.xlsx' with your actual file path)
+df = pd.read_excel(r"C:\Users\Dev\Downloads\fortune1000.xlsx", engine='openpyxl')
+print(df.head())
+print(df.columns)
+print(df.dtypes)
+print(df.describe())
+# Or drop rows with missing values
+df.dropna(inplace=True)
+df.count()
+df.rename(columns={'Rank': 'Rankings'}, inplace=True)
+print(df.head())
+
+
+
+
+
+#A code to display sector with total profit
+x= df.groupby('Sector')['Profits'].sum()
+print(x)
+
+#A code to display sector with average profit
+x1 = df.groupby('Sector')['Profits'].mean()
+print(x1)
+#A code to display highest profit of a sector
+x2=df.groupby('Sector')['Profits'].max()
+print(x2)
+
+#A code to display lowest profit of a sector
+x3=df.groupby('Sector')['Profits'].min()
+print(x3)
+
+
+#A code to find the total revenue of particular sectors
+y = df.groupby('Sector')['Revenue'].sum()
+print(y)
+
+#A code to find the average revenue of particular sectors
+y1 = df.groupby('Sector')['Revenue'].mean()
+print(y1)
+
+#A code to display highest revenue of a particular sector
+y2=df.groupby('Sector')['Revenue'].max()
+print(y2)
+
+#A code to display lowest revenue of a particular sector
+y3=df.groupby('Sector')['Revenue'].min()
+print(y3)
+
+
+#No of employees working in a particular sector
+z=df.groupby('Sector')['Employees'].sum()
+print(z)
+
+
+#No of companies in a particular sectors
+z1=df.groupby('Sector')['Company'].count()
+print(z1)
+print(sum(z1))
